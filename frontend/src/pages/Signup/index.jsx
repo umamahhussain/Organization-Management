@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import M from 'materialize-css';
 import { signupFormConfig, authConfig } from '../config';
-
+ 
 const Signup = () => {
   const [formData, setFormData] = useState({
     firstname: '',
@@ -13,38 +13,39 @@ const Signup = () => {
     username: '',
     password: '',
   });
-
+ 
   const navigate = useNavigate();
-
+ 
   useEffect(() => {
     // Initialize MaterializeCSS for select elements
     M.AutoInit();
   }, []);
-
+ 
   const handleChange = (field, value) => {
     setFormData({
       ...formData,
       [field]: value,
     });
   };
-
+ 
   const handleSubmit = async (event) => {
     event.preventDefault();
-
+ 
     try {
       const data = await authConfig.handleSubmit(formData, 'signup');
       if (data.message) {
         M.toast({ html: data.message, classes: 'rounded #757575 grey darken-1' });
+        console.log(data.message)
         navigate('/login');
       } else if (data.error) {
-        M.toast({ html: data.error, classes: '#f06292 pink lighten-2' });
+        M.toast({ html: data.error, classes: '#e91e63 pink' });
       }
     } catch (error) {
-      M.toast({ html: 'Error signing up', classes: '#f06292 pink lighten-2' });
+      M.toast({ html: 'Error signing up', classes: '#e91e63 pink' });
       console.error('Signup error:', error);
     }
   };
-
+ 
   return (
     <div className="row gradient" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
       <div className="col s12">
@@ -96,5 +97,5 @@ const Signup = () => {
     </div>
   );
 };
-
+ 
 export default Signup;
