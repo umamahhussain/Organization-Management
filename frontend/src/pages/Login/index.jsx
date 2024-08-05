@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import M from "materialize-css"
 import { UserContext } from "../../App"
 import { loginFormConfig,authConfig } from '../config';
-
+ 
  
 const Login = () => {
  
@@ -32,7 +32,7 @@ const Login = () => {
         M.toast({ html: data.message, classes: 'rounded #757575 grey darken-1' })
       }
       else if(data.error){
-        M.toast({ html: data.error, classes: '#f06292 pink lighten-2' })
+        M.toast({ html: data.error, classes: '#e91e63 pink' })
       }
       else if (data.user) {
         // Ensure the user object and name property exist
@@ -44,7 +44,7 @@ const Login = () => {
     }
      
     } catch (error) {
-      M.toast({ html: 'Error logging up', classes: '#f06292 pink lighten-2' });
+      M.toast({ html: 'Error logging up', classes: '#e91e63 pink' });
       console.error('Login error:', error);
     }
   }
@@ -84,5 +84,5 @@ const Login = () => {
     </div>
   );
 };
-
+ 
 export default Login;
